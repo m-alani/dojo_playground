@@ -20,7 +20,7 @@ define([
             var node = dom.byId(id);
             oldText[id] = node.innerHTML;
             node.innerHTML = text;
-            fx.slideTo({
+            fx.wipeOut({
               node: node,
               top: 100,
               left: 200
@@ -31,7 +31,7 @@ define([
             var node = dom.byId(id);
             node.innerHTML = oldText[id];
             delete oldText[id];
-            fx.slideTo({
+            fx.wipeIn({
               node: node,
               top: 0,
               left: 10
