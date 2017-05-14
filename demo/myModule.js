@@ -1,10 +1,10 @@
 require(["dojo/_base/lang"], function(lang){
   var myObj = {
-    foo: "bar"
+    foo: "Bar"
   };
 
   var func = lang.hitch(myObj, function(){
-    console.log(this.foo);
+    console.log(`Foo ${this.foo}!!`);
   });
 
   func();
