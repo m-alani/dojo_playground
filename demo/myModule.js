@@ -1,4 +1,7 @@
-require(["dojo/_base/lang"], function(lang){
+require([
+  "dojo/_base/lang"
+], function(
+  lang) {
   var myObj = {
     foo: "Bar"
   };
