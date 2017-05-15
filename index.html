@@ -3,40 +3,46 @@
 <head>
     <meta charset="utf-8">
     <title>Tutorial: Hello Dojo</title>
+    <link rel="stylesheet" href="dijit/themes/claro/claro.css" />
 </head>
-<body>
-    <!-- configure Dojo -->
-    <script>
-        var dojoConfig = {
-            async: true,
-            baseUrl: '.',
-            packages: [
-                'dojo',
-                'dijit',
-                'dojox',
-            ]
-        };
-    </script>
-    <!-- load Dojo -->
-    <script src="dojo/dojo.js"></script>
+<body class="claro">
+  <!-- configure Dojo -->
+  <script>
+    dojoConfig = {
+        has: {
+            "dojo-firebug": true
+        },
+        app: {
+            userName: "Marwan"
+        }
+    };
+  </script>
 
-    <!-- practice magic -->
-    <script>
-    // Require the registry, parser, Dialog, and wait for domReady
-    require(["dijit/registry", "dojo/parser", "dojo/json", "dojo/_base/config", "dijit/Dialog", "dojo/domReady!"]
-    , function(registry, parser, JSON, config) {
-        // Explicitly parse the page
-        parser.parse();
-        // Find the dialog
-        var dialog = registry.byId("dialog");
-        // Set the content equal to what dojo.config is
-        dialog.set("content", "<pre>" + JSON.stringify(config, null, "\t") + "```");
-        // Show the dialog
-        dialog.show();
-    });
-    </script>
+  <!-- load Dojo -->
+  <script src="dojo/dojo.js"></script>
 
-  <!-- and later in the page -->
-  <div id="dialog" data-dojo-type="dijit/Dialog" data-dojo-props="title: 'dojoConfig / dojo/_base/config'"></div>
+  <!-- practice magic -->
+  <script>
+    require(["dijit/Dialog", "dijit/registry", "dojo/parser", "dojo/_base/lang",
+      "dojo/json", "dojo/_base/config", "dojo/io-query", "dojo/domReady!"]
+      , function(Dialog, registry, parser, lang, JSON, config, ioQuery) {
+
+          // pull configuration from the query string
+          // and mix it into our app config
+          var queryParams = ioQuery.queryToObject(location.search.substring(1));
+          lang.mixin(config.app, queryParams);
+
+          // Create a dialog
+          var dialog = new Dialog({
+              title: "Welcome back " + config.app.userName,
+              content: "<pre>" + JSON.stringify(config, null, "\t") + "```"
+          });
+
+          // Draw on the app config to put up a personalized message
+          dialog.show();
+
+      });
+  </script>
+
 </body>
 </html>
