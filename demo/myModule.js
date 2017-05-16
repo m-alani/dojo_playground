@@ -3,6 +3,7 @@ require(["dojo/_base/lang"], function(lang){
     foo: "Bar"
   };
 
+  // Attahces a context to a function!!
   var func = lang.hitch(myObj, function(){
     console.log(`Foo ${this.foo}!!`);
   });
