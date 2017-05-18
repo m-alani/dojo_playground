@@ -7,9 +7,11 @@ require([
   };
 
   // Attahces a context to a function!!
-  var func = lang.hitch(myObj, function(){
+  var test = lang.hitch(myObj, function(){
     console.log(`Foo ${this.foo}!!`);
   });
 
-  func();
+  this.foo = "Cafe";
+  
+  test();
 });
