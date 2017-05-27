@@ -34,7 +34,7 @@
     function(Dialog, registry, parser, lang, JSON, config, ioQuery) {
 
           // pull configuration from the query string
-          // and mix it into our app config
+          // and mix it into the app config
           var queryParams = ioQuery.queryToObject(location.search.substring(1));
           lang.mixin(config.app, queryParams);
 
