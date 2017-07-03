@@ -35,6 +35,7 @@
 
           // Read configurations from the query string
           // and add it to the app config
+          // Note that the config.app object will have all the queryParams properties/functions added to it
           var queryParams = ioQuery.queryToObject(location.search.substring(1));
           lang.mixin(config.app, queryParams);
 
